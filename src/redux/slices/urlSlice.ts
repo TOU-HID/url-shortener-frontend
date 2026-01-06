@@ -10,8 +10,6 @@ const initialState: UrlState = {
   error: null,
 };
 
-// Async thunks
-
 // Get all URLs
 export const fetchUrls = createAsyncThunk(
   'url/fetchUrls',
@@ -59,7 +57,17 @@ const urlSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
+    incrementUrlClick: (state, action) => {
+      const urls = state.urls.map((url) => {
+        if (url._id === action.payload) {
+          url.clicks += 1;
+        }
+        return url;
+      });
+      state.urls = urls;
+    },
   },
+
   extraReducers: (builder) => {
     // Fetch URLs
     builder
@@ -112,5 +120,5 @@ const urlSlice = createSlice({
   },
 });
 
-export const { clearError } = urlSlice.actions;
+export const { clearError, incrementUrlClick } = urlSlice.actions;
 export default urlSlice.reducer;
