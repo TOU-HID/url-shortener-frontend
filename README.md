@@ -76,14 +76,14 @@ frontend/
 └── vite.config.ts      # Vite configuration
 ```
 
-## 🧠 Design Decisions
+## 3. Design Decisions
 
 - **Redux Toolkit**: Chosen for global state management to handle complex states like user authentication status and the list of URLs. It simplifies asynchronous logic (via `createAsyncThunk`) and ensures predictable state updates.
 - **Axios Interceptors**: Implemented to automatically attach the JWT token to every request and globally handle `401 Unauthorized` errors by redirecting the user to login. This keeps components clean of authentication logic.
 - **Modular Architecture**: Components are strictly organized by feature (Auth, Dashboard, UrlShortener) rather than type. This improves maintainability and scalability.
 - **TypeScript**: Used extensively to ensure type safety for API responses, Redux state, and Component props, reducing runtime errors.
 
-## ⚠️ Known Limitations
+## 4. Known Limitations
 
 - **Pagination**: The dashboard currently loads a list of URLs (defaulting to the backend limit, likely 100). Full pagination controls (Next/Prev pages) are not yet implemented in the UI.
 - **Persistence**: Authentication state is persisted in `localStorage`. While standard for many applications, more sensitive applications might prefer HTTP-only cookies.
