@@ -18,12 +18,8 @@ const Dashboard = () => {
     <div style={styles.container}>
       <div style={styles.content}>
         <div style={styles.header}>
-          <h1 style={styles.welcomeText}>
-            Welcome back, {user?.name}! 👋
-          </h1>
-          <p style={styles.subtitle}>
-            Create and manage your shortened URLs
-          </p>
+          <h1 style={styles.welcomeText}>Welcome back, {user?.name}</h1>
+          <p style={styles.subtitle}>Create and manage your shortened URLs</p>
         </div>
 
         <UrlForm />

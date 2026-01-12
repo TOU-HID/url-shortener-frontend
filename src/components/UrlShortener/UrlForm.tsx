@@ -10,24 +10,28 @@ const UrlForm = () => {
   const [latestShortUrl, setLatestShortUrl] = useState('');
 
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, totalCount, limit } = useSelector((state: RootState) => state.url);
+  const { loading, error, totalCount, limit } = useSelector(
+    (state: RootState) => state.url
+  );
   const { user } = useSelector((state: RootState) => state.auth);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (totalCount >= limit) {
-      alert(`URL limit reached (${limit}/${limit}). Please upgrade your account.`);
+      alert(
+        `URL limit reached (${limit}/${limit}). Please upgrade your account.`
+      );
       return;
     }
 
     const result = await dispatch(createShortUrl(url));
-    
+
     if (createShortUrl.fulfilled.match(result)) {
       setLatestShortUrl(result.payload.data.shortUrl);
       setUrl('');
       setCopySuccess(false);
-      
+
       // Update user's URL count
       if (user) {
         dispatch(updateUserUrlCount(user.urlCount + 1));
@@ -45,7 +49,7 @@ const UrlForm = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>🔗 Shorten Your URL</h2>
+      <h2 style={styles.title}>Shorten Your URL</h2>
       <p style={styles.subtitle}>
         Paste your long URL below and get a short, shareable link
       </p>
@@ -54,14 +58,14 @@ const UrlForm = () => {
 
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
-          type="url"
+          type='url'
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="https://example.com/long-url"
+          placeholder='https://example.com/long-url'
           required
           style={styles.input}
         />
-        <button type="submit" style={styles.button} disabled={loading}>
+        <button type='submit' style={styles.button} disabled={loading}>
           {loading ? 'Shortening...' : 'Shorten URL'}
         </button>
       </form>
@@ -71,7 +75,7 @@ const UrlForm = () => {
           <p style={styles.resultLabel}>✅ Your shortened URL:</p>
           <div style={styles.resultBox}>
             <input
-              type="text"
+              type='text'
               value={latestShortUrl}
               readOnly
               style={styles.resultInput}
@@ -85,7 +89,10 @@ const UrlForm = () => {
 
       <div style={styles.statsBox}>
         <p style={styles.statsText}>
-          📊 URLs Created: <strong>{totalCount}/{limit}</strong>
+          URLs Created:{' '}
+          <strong>
+            {totalCount}/{limit}
+          </strong>
         </p>
         {totalCount >= limit && (
           <p style={styles.limitWarning}>

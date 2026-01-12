@@ -6,8 +6,12 @@ import type { RootState } from '../../redux/store';
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
-	const { loading, totalCount, limit } = useSelector((state: RootState) => state.url);
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const { loading, totalCount, limit } = useSelector(
+    (state: RootState) => state.url
+  );
 
   const handleLogout = () => {
     dispatch(logout());
@@ -18,9 +22,9 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       <div style={styles.container}>
         <div style={styles.logo} onClick={() => navigate('/')}>
-          🔗 URL Shortener
+          URL Shortener
         </div>
-        
+
         {isAuthenticated && (
           <div style={styles.rightSection}>
             <span style={styles.userName}>👤 {user?.name}</span>

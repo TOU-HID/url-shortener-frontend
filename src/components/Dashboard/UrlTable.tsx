@@ -46,15 +46,17 @@ const UrlTable: React.FC<UrlTableProps> = ({ urls, userUrlCount }) => {
   if (urls.length === 0) {
     return (
       <div style={styles.emptyState}>
-        <p style={styles.emptyText}>📭 No URLs yet. Create your first shortened URL above!</p>
+        <p style={styles.emptyText}>
+          📭 No URLs yet. Create your first shortened URL above!
+        </p>
       </div>
     );
   }
 
   return (
     <div style={styles.container}>
-      <h3 style={styles.title}>📊 Your Shortened URLs</h3>
-      
+      <h3 style={styles.title}>Your Shortened URLs</h3>
+
       <div style={styles.tableWrapper}>
         <table style={styles.table}>
           <thead>
@@ -73,7 +75,9 @@ const UrlTable: React.FC<UrlTableProps> = ({ urls, userUrlCount }) => {
                 <td style={styles.td}>
                   <div
                     style={styles.urlCell}
-                    onClick={() => setExpandedUrl(expandedUrl === url._id ? null : url._id)}
+                    onClick={() =>
+                      setExpandedUrl(expandedUrl === url._id ? null : url._id)
+                    }
                     title={url.originalUrl}
                   >
                     {expandedUrl === url._id
@@ -88,8 +92,8 @@ const UrlTable: React.FC<UrlTableProps> = ({ urls, userUrlCount }) => {
                   <div style={styles.shortUrlCell}>
                     <a
                       href={url.shortUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target='_blank'
+                      rel='noopener noreferrer'
                       style={styles.link}
                       onClick={() => dispatch(incrementUrlClick(url._id))}
                     >
